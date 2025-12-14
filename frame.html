@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moving Frame</title>
+    <style>
+      @import "https://unpkg.com/open-props/open-props.min.css";
+@import "https://unpkg.com/open-props/normalize.min.css";
+
+*,*:after,*:before {
+	box-sizing: border-box;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+img, ul {
+    animation: 10s scale-up both ease-in-out infinite alternate;
+    }
+}
+
+body {
+	display: grid;
+	place-items: center;
+	min-height: 100vh;
+	font-family:  'Google Sans', sans-serif, system-ui;
+    width: 100vw;
+    overflow-x: hidden;
+    overflow: hidden;
+    background: var(--surface-2);
+}
+
+ul {
+	--big-tile-size: 50vmin;
+	--scale: 0.4;
+	--rotation: 270deg;
+	--tile-size: calc(var(--big-tile-size) / 3);
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+	display: grid;
+	gap: 1vmin;
+	grid-template: repeat(9, var(--tile-size)) / repeat(9, var(--tile-size));
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%) scale(var(--scale));
+}
+
+@keyframes scale-up {
+	0% {
+		transform: translate(-50%, -50%) scale(var(--scale)) rotate(0deg);
+	}
+	100% {
+		transform: translate(-50%, -50%) scale(1) rotate(var(--rotation));	
+	}
+}
+
+
+img {
+	--rotation: -270deg;
+	--scale: 1;
+	height: 200%;
+	min-width: 200%;
+	aspect-ratio: 1;
+	object-fit: cover;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+li {
+	padding: 0;
+	position: relative;
+	background: hsl(0 0% 75% / 0.2);
+	max-inline-size: 100%;
+}
+
+li {
+	grid-column: var(--x1, auto) / var(--x2, auto);
+	grid-row: var(--y1, auto) / var(--y2, auto);
+}
+
+li {
+	border-radius: var(--radius-3);
+	overflow: hidden;
+}
+    </style>
+</head>
+<body>
+    <main>
+        <ul>
+          <li style="--x1: 2; --x2: 6; --y1: 1; --y2: 4;">
+            <img src="https://picsum.photos/600/900?random=1" alt="">
+          </li>
+          <li style="--x1: 6; --x2: 8; --y1: 2; --y2: 4;">
+            <img src="https://picsum.photos/600/900?random=2" alt="">
+          </li>
+          <li style="--x1: 1; --x2: 4; --y1: 4; --y2: 7;">
+            <img src="https://picsum.photos/600/900?random=3" alt="">
+          </li>
+          <li style="--x1: 4; --x2: 7; --y1: 4; --y2: 7;">
+            <img src="https://picsum.photos/600/900?random=4" alt="">
+          </li>
+          <li style="--x1: 7; --x2: 9; --y1: 4; --y2: 6;">
+            <img src="https://picsum.photos/600/900?random=5" alt="">
+          </li>
+          <li style="--x1: 2; --x2: 4; --y1: 7; --y2: 9;">
+            <img src="https://picsum.photos/600/900?random=7" alt="">
+          </li>
+          <li style="--x1: 4; --x2: 7; --y1: 7; --y2: 10;">
+            <img src="https://picsum.photos/600/900?random=8" alt="">
+          </li>
+          <li style="--x1: 7; --x2: 10; --y1: 6; --y2: 9;">
+            <img src="https://picsum.photos/600/900?random=9" alt="">
+          </li>
+        </ul>
+      </main>
+</body>
+</html>
